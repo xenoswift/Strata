@@ -20,14 +20,12 @@ import java.io.File;
 /**
  * Created by blueyu2 on 1/4/16.
  */
-@Mod(modid = Strata.MODID, version = Strata.VERSION ,
-dependencies = 	"after:*" /*+
-				"after:denseores;" +
-				"after:UndergroundBiomes"*/)
+@Mod(modid = Strata.MODID, version = Strata.VERSION )
+//removed fuckery with load order. Solved DenseOres issue, but I don't like it.
 
 public class Strata {
     public static final String MODID = "strata";
-    public static final String VERSION = "1.7.10-1.5.3";
+    public static final String VERSION = "1.7.10-1.5.5";
 
     @SidedProxy(serverSide = "com.blueyu2.strata.Proxy", clientSide = "com.blueyu2.strata.ProxyClient")
     public static Proxy proxy;

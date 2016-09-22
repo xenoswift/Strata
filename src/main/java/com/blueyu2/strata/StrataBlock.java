@@ -72,9 +72,10 @@ public class StrataBlock extends Block {
         return type == Type.STONE ? super.canHarvestBlock(player, meta) : baseBlock.canHarvestBlock(player, this.meta);
     }
 
+    //TODO changed
     @Override
     public int getHarvestLevel(int meta){
-        return type == Type.STONE ? (meta == 0 ? 2 : 3) : (baseBlock.getHarvestLevel(this.meta));
+        return type == Type.STONE ? (meta == 0 ? (StrataConfig.strata_1_hard) : (StrataConfig.strata_2_hard)) : (baseBlock.getHarvestLevel(this.meta));
     }
 
     @Override

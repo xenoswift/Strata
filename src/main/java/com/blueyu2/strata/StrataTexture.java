@@ -70,7 +70,7 @@ public class StrataTexture extends TextureAtlasSprite {
         baseName = baseName.toLowerCase();
 
         //TODO I CAN'T FUCKING BELIEVE IT WAS THAT SIMPLE TO FIX
-        return getDerivedStoneName(oreName, depth) + "+" + baseModName + "." + baseName;
+        return getDerivedStoneName(oreName, depth) + "." + baseModName + "." + baseName;
     }
 
     public boolean hasCustomLoader(IResourceManager manager, ResourceLocation location) {

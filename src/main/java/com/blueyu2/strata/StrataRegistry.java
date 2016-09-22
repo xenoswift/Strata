@@ -65,12 +65,12 @@ public class StrataRegistry {
                     case ORE:
                         block = new StrataBlock(blockId, meta, oreTexture, stoneTexture);
                         blocks.put(getBlockMeta(baseBlock, meta, true), block);
-                        GameRegistry.registerBlock(block, StrataBlockItem.class, "block|" + modName + "/" + blockName + "-" + meta);
+                        GameRegistry.registerBlock(block, StrataBlockItem.class, "block." + modName + "." + blockName + "." + meta);
                         break;
                     case STONE:
                         block = new StrataBlock(blockId, meta, stoneTexture);
                         blocks.put(getBlockMeta(baseBlock, meta, true), block);
-                        GameRegistry.registerBlock(block, StrataBlockItem.class, "block|" + modName + "/" + blockName + "-" + meta);
+                        GameRegistry.registerBlock(block, StrataBlockItem.class, "block." + modName + "." + blockName + "." + meta);
                         break;
                 }
             }

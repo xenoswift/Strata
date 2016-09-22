@@ -17,12 +17,21 @@ public class StrataConfig {
 
     public static int maxDepth = 2;
     public static boolean uninstall = false;
+    
+    public static int strata_1_hard = 2;
+    public static int strata_2_hard = 3;
 
     public void loadConfig(File file){
         Configuration baseConfig = new Configuration(file, true);
 
         baseConfig.load();
         uninstall = baseConfig.getBoolean("Uninstall", "Main", false, "Set this to true and go to all the areas you went to with Strata installed to replace all Strata blocks in the world with the original blocks. This allows for safe removal of Strata without your worlds getting ruined.");
+        
+        strata_1_hard = baseConfig.getInt("First strata mining level", "Main", 2, 1, 10, "Changes the mining level required to mine stone on the first strata level");
+        strata_2_hard = baseConfig.getInt("Second strata mining level", "Main", 3, 1, 10, "Changes the mining level required to mine stone on the second strata level");
+        
+        //maxDepth = baseConfig.getInt("Max generation depth", "Main", 2, 0, 60, "Lowest y level strata stone will generate to");
+        
         baseConfig.save();
 
         File vanillaFile = new File(configDir, "minecraft.cfg");

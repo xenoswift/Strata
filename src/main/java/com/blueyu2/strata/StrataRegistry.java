@@ -49,8 +49,9 @@ public class StrataRegistry {
     }
 
     public static void registerBlock(String blockId, int meta, String oreTexture, String stoneTexture, StrataBlock.Type type){
+        //if null equals blockID?
         if("".equals(blockId) || "minecraft:air".equals(blockId))
-            return;
+            return; //this return is icky
 
         int index = blockId.indexOf(':');
 

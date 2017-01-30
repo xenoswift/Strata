@@ -36,18 +36,18 @@ public class UBC {
                     StrataBlock sBlock = (StrataBlock) block;
                     String cat;
 
-                    if(!sBlock.blockId.substring(0, sBlock.blockId.indexOf(':')).equals("UndergroundBiomes"))
+                    if(!sBlock.blockName.substring(0, sBlock.blockName.indexOf(':')).equals("UndergroundBiomes"))
                         continue;
 
                     switch (sBlock.type){
                         case STONE:
-                            cat = StrataConfig.CATEGORY_STONE + sBlock.blockId;
+                            cat = StrataConfig.CATEGORY_STONE + sBlock.blockName;
                             if(sBlock.meta > 0)
                                 cat = cat + ":" + sBlock.meta;
                             ubcConfig.get(cat, "stoneTexture", sBlock.stoneTexture);
                             break;
                         case ORE:
-                            cat = StrataConfig.CATEGORY_ORE + sBlock.blockId;
+                            cat = StrataConfig.CATEGORY_ORE + sBlock.blockName;
                             if(sBlock.meta > 0)
                                 cat = cat + ":" + sBlock.meta;
                             ubcConfig.get(cat, "oreTexture", sBlock.oreTexture);

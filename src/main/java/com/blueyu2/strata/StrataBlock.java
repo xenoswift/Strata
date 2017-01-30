@@ -21,13 +21,13 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 /**
  * Created by blueyu2 on 1/4/16.
  */
 public class StrataBlock extends Block {
-    public String blockId;
+    public String blockName;
     Block baseBlock;
     public int meta;
     public String oreTexture;
@@ -39,16 +39,16 @@ public class StrataBlock extends Block {
     public Type type;
 
     //Stone
-    public StrataBlock(String blockId, int meta, String stoneTexture){
-        this(blockId, meta, stoneTexture, stoneTexture);
+    public StrataBlock(String blockName, int meta, String stoneTexture){
+        this(blockName, meta, stoneTexture, stoneTexture);
         type = Type.STONE;
     }
 
     //Ore
-    public StrataBlock(String blockId, int meta, String oreTexture, String stoneTexture) {
+    public StrataBlock(String blockName, int meta, String oreTexture, String stoneTexture) {
         super(Material.rock);
-        baseBlock = Block.getBlockFromName(blockId);
-        this.blockId = blockId;
+        baseBlock = Block.getBlockFromName(blockName);
+        this.blockName = blockName;
         this.meta = meta;
         this.oreTexture = oreTexture;
         this.stoneTexture = stoneTexture;
@@ -83,20 +83,20 @@ public class StrataBlock extends Block {
         return baseBlock.getHarvestTool(this.meta);
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, int x, int y, int z, Random random){
-        int meta = world.getBlockMetadata(x, y, z);
-
-        try{
-            world.setBlock(x, y, z, baseBlock);
-            baseBlock.randomDisplayTick(world, x, y, z, random);
-        } catch (Exception e){
-            world.setBlock(x, y, z, this, meta, 0);
-            throw new RuntimeException(e);
-        }
-        world.setBlock(x, y, z, this, meta, 0);
-    }
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public void randomDisplayTick(World world, int x, int y, int z, Random random){
+//        int meta = world.getBlockMetadata(x, y, z);
+//
+//        try{
+//            world.setBlock(x, y, z, baseBlock);
+//            baseBlock.randomDisplayTick(world, x, y, z, random);
+//        } catch (Exception e){
+//            world.setBlock(x, y, z, this, meta, 0);
+//            throw new RuntimeException(e);
+//        }
+//        world.setBlock(x, y, z, this, meta, 0);
+//    }
 
     @SideOnly(Side.CLIENT)
     @Override

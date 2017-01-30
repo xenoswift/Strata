@@ -52,7 +52,7 @@ public class StrataTexture extends TextureAtlasSprite {
 
         oreName = oreName.toLowerCase();
 
-        return Strata.MODID + ":" + oreModName + "/" + oreName + "." + depth;
+        return StrataLib.MODID + ":" + oreModName + "/" + oreName + "." + depth;
     }
 
     public static String getDerivedOreName(String oreName, int depth, String baseName){
@@ -69,7 +69,7 @@ public class StrataTexture extends TextureAtlasSprite {
 
         baseName = baseName.toLowerCase();
 
-        //TODO I CAN'T FUCKING BELIEVE IT WAS THAT SIMPLE TO FIX
+
         return getDerivedStoneName(oreName, depth) + "." + baseModName + "." + baseName;
     }
 

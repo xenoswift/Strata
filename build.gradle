@@ -17,12 +17,12 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10-1.5.5"
+version = "1.7.10-1.5.5-ts2"
 group= "com.blueyu2.strata" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Strata"
 
 minecraft {
-    version = "1.7.10-10.13.4.1614-1.7.10"
+    version = "1.7.10-10.13.4.1566-1.7.10"
     runDir = "eclipse"
 }
 

@@ -1,7 +1,6 @@
 package com.blueyu2.strata;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
@@ -13,10 +12,13 @@ public class StrataConfig {
     public static final StrataConfig instance = new StrataConfig();
     public static final String CATEGORY_STONE = "stones.";
     public static final String CATEGORY_ORE = "ores.";
+    public static final String STONE_TEXTURE_STRING = "stoneTexture";
+    public static final String ORE_TEXTURE_STRING = "oreTexture";
+
     public static File configDir = null;
 
     public static int maxDepth = 2;
-    public static boolean uninstall = false;
+    //public static boolean uninstall = false;
     
     public static int strata_1_hard = 2;
     public static int strata_2_hard = 3;
@@ -25,7 +27,7 @@ public class StrataConfig {
         Configuration baseConfig = new Configuration(file, true);
 
         baseConfig.load();
-        uninstall = baseConfig.getBoolean("Uninstall", "Main", false, "Set this to true and go to all the areas you went to with Strata installed to replace all Strata blocks in the world with the original blocks. This allows for safe removal of Strata without your worlds getting ruined.");
+        //uninstall = baseConfig.getBoolean("Uninstall", "Main", false, "Set this to true and go to all the areas you went to with Strata installed to replace all Strata blocks in the world with the original blocks. This allows for safe removal of Strata without your worlds getting ruined.");
         
         strata_1_hard = baseConfig.getInt("First strata mining level", "Main", 2, 1, 10, "Changes the mining level required to mine stone on the first strata level");
         strata_2_hard = baseConfig.getInt("Second strata mining level", "Main", 3, 1, 10, "Changes the mining level required to mine stone on the second strata level");
@@ -42,22 +44,22 @@ public class StrataConfig {
             StrataRegistry.initVanillaBlocks();
             for(Block block : StrataRegistry.blocks.values()){
                 if(block instanceof StrataBlock){
-                    StrataBlock sBlock = (StrataBlock) block;
-                    String cat;
+                    StrataBlock strataBlock = (StrataBlock) block;
+                    String cat; //mrow
 
-                    switch (sBlock.type){
+                    switch (strataBlock.type){
                         case STONE:
-                            cat = CATEGORY_STONE + sBlock.blockId;
-                            if(sBlock.meta > 0)
-                                cat = cat + ":" + sBlock.meta;
-                            vanillaConfig.get(cat, "stoneTexture", sBlock.stoneTexture);
+                            cat = CATEGORY_STONE + strataBlock.blockName;
+                            if(strataBlock.meta > 0)
+                                cat = cat + ":" + strataBlock.meta;
+                            vanillaConfig.get(cat, STONE_TEXTURE_STRING, strataBlock.stoneTexture);
                             break;
                         case ORE:
-                            cat = CATEGORY_ORE + sBlock.blockId;
-                            if(sBlock.meta > 0)
-                                cat = cat + ":" + sBlock.meta;
-                            vanillaConfig.get(cat, "oreTexture", sBlock.oreTexture);
-                            vanillaConfig.get(cat, "stoneTexture", sBlock.stoneTexture);
+                            cat = CATEGORY_ORE + strataBlock.blockName;
+                            if(strataBlock.meta > 0)
+                                cat = cat + ":" + strataBlock.meta;
+                            vanillaConfig.get(cat, ORE_TEXTURE_STRING, strataBlock.oreTexture);
+                            vanillaConfig.get(cat, STONE_TEXTURE_STRING, strataBlock.stoneTexture);
                             break;
                     }
                 }
@@ -120,10 +122,10 @@ public class StrataConfig {
                     return;
                 switch (type){
                     case STONE:
-                        StrataRegistry.registerStone(blockId, meta, config.get(cat, "stoneTexture", "").getString().trim());
+                        StrataRegistry.registerStone(blockId, meta, config.get(cat, STONE_TEXTURE_STRING, "").getString().trim());
                         break;
                     case ORE:
-                        StrataRegistry.registerOre(blockId, meta, config.get(cat, "oreTexture", "").getString().trim(), config.get(cat, "stoneTexture", "").getString().trim());
+                        StrataRegistry.registerOre(blockId, meta, config.get(cat, ORE_TEXTURE_STRING, "").getString().trim(), config.get(cat, STONE_TEXTURE_STRING, "").getString().trim());
                 }
             }
         }
